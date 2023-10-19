@@ -167,10 +167,11 @@ class Boy:
         self.state_machine.draw()
 
     def fire_ball(self):
-        ball = Ball()
+        ball = Ball(self.x, self.y - 15, self.face_dir*10)
         # 생성한 볼을 월드에 보여줘야 함
         game_world.add_object(ball, 1)
         if self.face_dir == -1:
             print('FIRE BALL LEFT')
         elif self.face_dir == 1:
             print('FIRE BALL RIGHT')
+3
