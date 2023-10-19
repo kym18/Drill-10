@@ -1,9 +1,12 @@
 from pico2d import *
 
-from Drill10.boy import Boy
-from Drill10.grass import Grass  #drill10.grass:grass라는 모듈로부터 Grass라는 클래스를 import 해라.
+from grass import Grass1
+from grass import Grass2
+from boy import Boy
+import game_world
 
 # Game object class here
+
 
 def handle_events():
     global running
@@ -18,44 +21,43 @@ def handle_events():
             boy.handle_event(event)
 
 
-def reset_world():
+def create_world():
     global running
     global grass
     global team
-    global world
     global boy
 
     running = True
-    world = []
-
-    grass = Grass()
-    world.append(grass)
 
     boy = Boy()
-    world.append(boy)
+    game_world.add_object(boy, 1)
+
+    grass = Grass1()
+    game_world.add_object(grass, 0 )
+
+    grass = Grass2()
+    game_world.add_object(grass, 2 )
+
 
 
 
 def update_world():
-    for o in world:
-        o.update()
-    pass
+    game_world.update()
 
 
 def render_world():
     clear_canvas()
-    for o in world:
-        o.draw()
+    game_world.render()
     update_canvas()
 
 
 open_canvas()
-reset_world()
+create_world()
 # game loop
 while running:
     handle_events()
     update_world()
     render_world()
-    delay(0.1)
+    delay(0.01)
 # finalization code
 close_canvas()
