@@ -12,7 +12,7 @@ class Ball:
     def draw(self):
         self.image.draw(self.x, self.y)
         #daskljfkaldjgioawrgrioj하잉
-
+        #newBranch
     def update(self):
         self.x += self.velocity
 
